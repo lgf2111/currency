@@ -1,0 +1,75 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #d9e6fa;
+  margin: 0;
+}
+
+.container {
+  background-color: white;
+  border-radius: 30px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  .converter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 20px;
+    div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      select,
+      input {
+        width: 100%;
+        padding: 0;
+      }
+      select {
+        font-size: large;
+      }
+      input {
+        text-align: right;
+        font-size: xx-large;
+        border: 0;
+      }
+    }
+  }
+}
+
+.output {
+  font-size: 2em;
+  margin: 20px 0;
+}
+
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  width: 100%;
+  margin-top: auto;
+}
+
+.keypad button {
+  height: 60px;
+  font-size: 1.5em;
+  border: none;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+  cursor: pointer;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
