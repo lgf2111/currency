@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2024-07-09T11:03:15.508Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36" etag="Dlm1XE9vY8vopZjQO4u0" version="24.6.4" type="github">
+<mxfile host="app.diagrams.net" modified="2024-07-09T11:17:39.182Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36" etag="dxN5VwZtbemYaIPXBrWa" version="24.6.4" type="github">
   <diagram name="Page-1" id="ag6JNuV7a8AcbBvIRJaS">
-    <mxGraphModel dx="786" dy="1198" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="884" dy="1298" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -117,6 +117,12 @@
         </mxCell>
         <mxCell id="TvcHqp0yRJ0g6OFCFb6s-82" value="WireFrame" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;" vertex="1" parent="1">
           <mxGeometry x="40" y="-200" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="TvcHqp0yRJ0g6OFCFb6s-84" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Online Mode&lt;/h1&gt;&lt;p&gt;When online, fetch&amp;nbsp;https://api.exchangerate-api.com/v4/latest/euro every hour in client&#39;s phone and manually do calculations&lt;/p&gt;&lt;p&gt;Whenever the data is fetched put it inside service worker for offline usage&lt;/p&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="90" y="550" width="380" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="TvcHqp0yRJ0g6OFCFb6s-85" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Offline Mode&lt;/h1&gt;&lt;p&gt;When offline, use installed data in service worker and render offline html to client, when it&#39;s back online go online mode.&lt;/p&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="80" y="710" width="390" height="120" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
