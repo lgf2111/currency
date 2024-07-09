@@ -85,8 +85,11 @@ function initializeCurrencyConverter() {
 
       const value = button.innerHTML;
       if (value.charCodeAt(0) === 9003) {
-        activeInput.value =
-          activeInput.value.length === 1 ? "0" : activeInput.value.slice(0, -1);
+        activeInput.value = activeInput.value.slice(0, -1);
+        if (activeInput.value.length === 0) {
+          currencyFromInput.value = "";
+          currencyToInput.value = "";
+        }
       } else {
         activeInput.value += value;
       }
