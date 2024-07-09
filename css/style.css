@@ -11,4 +11,8 @@ body {
 #currency-from .input-group input {
   font-size: 2rem;
 }
+
+#keypad > div > .col > button {
+  font-size: 1.25rem;
+}
 /*# sourceMappingURL=style.css.map */
