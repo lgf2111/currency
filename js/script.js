@@ -36,9 +36,7 @@ function createKeypad() {
   document.getElementById("keypad").appendChild(keypadContainer);
 }
 
-// createKeypad();
-
-document.addEventListener("DOMContentLoaded", function () {
+function setupCurrencyInputListeners() {
   const currencyFromInput = document.querySelector("#currency-from input");
   const currencyToInput = document.querySelector("#currency-to input");
 
@@ -59,4 +57,52 @@ document.addEventListener("DOMContentLoaded", function () {
       currencyFromInput.value = "";
     }
   });
-});
+}
+
+function initializeCurrencyConverter() {
+  const currencyFromInput = document.querySelector("#currency-from input");
+  const currencyToInput = document.querySelector("#currency-to input");
+  let activeInput = currencyFromInput;
+
+  currencyFromInput.removeAttribute("readonly");
+  currencyToInput.setAttribute("readonly", true);
+
+  currencyFromInput.addEventListener("focus", function () {
+    activeInput = currencyFromInput;
+    currencyFromInput.removeAttribute("readonly");
+    currencyToInput.setAttribute("readonly", true);
+  });
+
+  currencyToInput.addEventListener("focus", function () {
+    activeInput = currencyToInput;
+    currencyToInput.removeAttribute("readonly");
+    currencyFromInput.setAttribute("readonly", true);
+  });
+
+  document.querySelectorAll("#keypad button").forEach((button) => {
+    button.addEventListener("click", function () {
+      if (activeInput.hasAttribute("readonly")) return;
+
+      const value = button.innerHTML;
+      if (value.charCodeAt(0) === 9003) {
+        activeInput.value =
+          activeInput.value.length === 1 ? "0" : activeInput.value.slice(0, -1);
+      } else {
+        activeInput.value += value;
+      }
+
+      const fromValue = parseFloat(currencyFromInput.value);
+      const toValue = parseFloat(currencyToInput.value);
+
+      if (activeInput === currencyFromInput && !isNaN(fromValue)) {
+        currencyToInput.value = (fromValue * 3.5).toFixed(2);
+      } else if (activeInput === currencyToInput && !isNaN(toValue)) {
+        currencyFromInput.value = (toValue / 3.5).toFixed(2);
+      }
+    });
+  });
+}
+
+// createKeypad();
+document.addEventListener("DOMContentLoaded", setupCurrencyInputListeners);
+document.addEventListener("DOMContentLoaded", initializeCurrencyConverter);
