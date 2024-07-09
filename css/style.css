@@ -1,0 +1,14 @@
+body {
+  height: 100vh;
+}
+
+#currency-to select, #currency-from select {
+  font-size: 1.2rem;
+}
+
+#currency-to .input-group span,
+#currency-to .input-group input, #currency-from .input-group span,
+#currency-from .input-group input {
+  font-size: 2rem;
+}
+/*# sourceMappingURL=style.css.map */

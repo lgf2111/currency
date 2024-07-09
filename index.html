@@ -5,8 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Currency</title>
     <link rel="manifest" href="manifest.json" />
-    <script defer src="script.js"></script>
-    <link rel="stylesheet" href="style.css" />
+
+    <link rel="stylesheet" href="css/style.css" />
+    <script defer src="js/script.js"></script>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <script defer src="js/bootstrap.bundle.min.js"></script>
 
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 
@@ -185,36 +189,115 @@
       />
     </div>
   </head>
-  <body>
-    <div class="container">
-      <div class="converter">
+  <body class="m-0">
+    <div
+      class="container-fluid p-2 d-flex flex-column justify-content-between h-100"
+    >
+      <div
+        id="converter"
+        class="h-100 d-flex flex-column justify-content-center"
+      >
         <div id="currency-from">
-          <select>
-            <option value="SGD">SGD - Singapore Dollar</option>
+          <select class="form-select border-0" aria-label="Currency From">
+            <option value="SGD">🇸🇬 SGD - Singapore Dollar</option>
           </select>
-          <input type="number" placeholder="$0" />
+          <div class="input-group">
+            <span
+              class="input-group-text border-0 bg-transparent"
+              id="currency-from-input"
+              >$</span
+            >
+            <input
+              type="number"
+              class="form-control form-control-lg text-end border-0"
+              placeholder="0"
+              aria-label="Currency"
+              aria-describedby="currency-from-input"
+            />
+          </div>
         </div>
-        <div id="currency-to">
-          <select>
-            <option value="MYR">MYR - Malaysian Ringgit</option>
+        <div id="currency-to" class="mt-5">
+          <select class="form-select border-0" aria-label="Currency To">
+            <option value="MYR">🇲🇾 MYR - Malaysian Ringgit</option>
           </select>
-          <input type="number" placeholder="RM0" />
+          <div class="input-group">
+            <span
+              class="input-group-text border-0 bg-transparent"
+              id="currency-to-input"
+              >RM</span
+            >
+            <input
+              type="number"
+              class="form-control form-control-lg text-end border-0"
+              placeholder="0"
+              aria-label="Currency"
+              aria-describedby="currency-from-input"
+            />
+          </div>
         </div>
       </div>
-      <div class="bottom-screen">
-        <div class="keypad">
-          <button>1</button>
-          <button>2</button>
-          <button>3</button>
-          <button>4</button>
-          <button>5</button>
-          <button>6</button>
-          <button>7</button>
-          <button>8</button>
-          <button>9</button>
-          <button>0</button>
-          <button>.</button>
-          <button>&#9003;</button>
+      <div id="keypad" class="text-center">
+        <div class="row row-cols-3 g-2">
+          <div class="col">
+            <button class="btn btn-outline-dark w-100 p-4">
+              <span class="display-6">1</span>
+            </button>
+          </div>
+          <div class="col">
+            <button class="btn btn-outline-dark w-100 p-4">
+              <span class="display-6">2</span>
+            </button>
+          </div>
+          <div class="col">
+            <button class="btn btn-outline-dark w-100 p-4">
+              <span class="display-6">3</span>
+            </button>
+          </div>
+          <div class="col">
+            <button class="btn btn-outline-dark w-100 p-4">
+              <span class="display-6">4</span>
+            </button>
+          </div>
+          <div class="col">
+            <button class="btn btn-outline-dark w-100 p-4">
+              <span class="display-6">5</span>
+            </button>
+          </div>
+          <div class="col">
+            <button class="btn btn-outline-dark w-100 p-4">
+              <span class="display-6">6</span>
+            </button>
+          </div>
+          <div class="col">
+            <button class="btn btn-outline-dark w-100 p-4">
+              <span class="display-6">7</span>
+            </button>
+          </div>
+          <div class="col">
+            <button class="btn btn-outline-dark w-100 p-4">
+              <span class="display-6">8</span>
+            </button>
+          </div>
+          <div class="col">
+            <button class="btn btn-outline-dark w-100 p-4">
+              <span class="display-6">9</span>
+            </button>
+          </div>
+          <div class="col">
+            <button class="btn btn-outline-dark w-100 p-4">
+              <span class="display-6">0</span>
+            </button>
+          </div>
+          <div class="col">
+            <button class="btn btn-outline-dark w-100 p-4">
+              <span class="display-6">.</span>
+            </button>
+          </div>
+          <div class="col">
+            <button class="btn btn-outline-dark w-100 p-4">
+              <span class="display-6">&#9003;</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>

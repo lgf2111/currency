@@ -1,0 +1,91 @@
+body {
+  height: 100vh;
+}
+
+#currency- {
+  &to,
+  &from {
+    select {
+      font-size: 1.2rem;
+    }
+    .input-group {
+      span,
+      input {
+        font-size: 2rem;
+      }
+    }
+  }
+}
+
+// body {
+//   height: 100vh;
+//   margin: 0;
+// }
+
+// .container {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: space-between;
+//   height: 100%;
+//   .converter {
+//     height: 100%;
+//     padding: 1rem;
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+//     justify-content: center;
+//     gap: 2rem;
+//     div {
+//       display: flex;
+//       flex-direction: column;
+//       align-items: center;
+//       gap: 0.125rem;
+//       select,
+//       input {
+//         width: 100%;
+//         box-sizing: border-box;
+//       }
+//       select {
+//         font-size: 1.25rem;
+//         padding: 0.5rem;
+//         border: 0;
+//       }
+//       input {
+//         font-size: 2rem;
+//         text-align: right;
+//         padding: 1rem;
+//         border: 0;
+//       }
+//     }
+//   }
+// }
+
+// .bottom-screen {
+//   padding: 1rem;
+//   .keypad {
+//     display: grid;
+//     grid-template-columns: repeat(3, 1fr);
+//     gap: 10px;
+//     width: 100%;
+//     margin-top: auto;
+//   }
+//   button {
+//     height: 5rem;
+//     font-size: 2rem;
+//     border: none;
+//     border-radius: 5px;
+//     background-color: #f0f0f0;
+//     cursor: pointer;
+//   }
+// }
+
+// input::-webkit-outer-spin-button,
+// input::-webkit-inner-spin-button {
+//   -webkit-appearance: none;
+//   margin: 0;
+// }
+
+// input[type="number"] {
+//   -moz-appearance: textfield;
+//   appearance: textfield;
+// }
