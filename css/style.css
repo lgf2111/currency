@@ -1,3 +1,9 @@
+:root {
+  -ms-touch-action: pan-x pan-y;
+      touch-action: pan-x pan-y;
+  height: 100%;
+}
+
 body {
   height: 100svh;
 }
