@@ -13,8 +13,22 @@ function registerServiceWorker() {
   }
 }
 
+function getCountry() {
+  const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+  if (timezone === "" || !timezone) {
+    return null;
+  }
+
+  const _country = window.TIMEZONES?.[timezone]?.c?.[0];
+  const country = window.COUNTRIES?.[_country || ""];
+
+  return country;
+}
+
 function createConverter() {
   const currencyDivs = ["currency-from", "currency-to"];
+  const country = getCountry();
 
   function populateSelect(divId: string) {
     const select = document.querySelector<HTMLSelectElement>(
@@ -22,11 +36,21 @@ function createConverter() {
     );
     if (select) {
       select.innerHTML = Object.keys(CURRENCY_NAMES)
-        .map(
-          (currency) =>
-            `<option value="${currency}">${CURRENCY_NAMES[currency]}</option>`
-        )
+        .map((currency) => {
+          const currencyName = CURRENCY_NAMES[currency];
+          return `<option value="${currency}" ${
+            currencyName.includes(country || "") ? "selected" : ""
+          }>${currencyName}</option>`;
+        })
         .join("");
+
+      // Initial setup to update span id
+      const initialSpanId =
+        divId === "currency-from" ? "currency-from-input" : "currency-to-input";
+      const initialSpan = document.getElementById(initialSpanId);
+      if (initialSpan) {
+        initialSpan.textContent = select.value;
+      }
 
       // Add event listener to update span id when option changes
       select.addEventListener("change", (event) => {
@@ -87,7 +111,17 @@ function createKeypad() {
   }
 }
 
-function setupCurrencyInputListeners() {
+function convertCurrency(value: number, from: string, to: string): number {
+  const rates = JSON.parse(localStorage.getItem("exchangeRates") || "{}");
+  if (!rates[from] || !rates[to]) return NaN;
+  return (value / rates[from]) * rates[to];
+}
+
+function formatCurrency(value: number): string {
+  return value.toFixed(2);
+}
+
+function setupKeypad() {
   const currencyFromInput = document.querySelector<HTMLInputElement>(
     "#currency-from input"
   );
@@ -102,12 +136,6 @@ function setupCurrencyInputListeners() {
       "#currency-to select"
     );
 
-    function convertCurrency(value: number, from: string, to: string): number {
-      const rates = JSON.parse(localStorage.getItem("exchangeRates") || "{}");
-      if (!rates[from] || !rates[to]) return NaN;
-      return (value / rates[from]) * rates[to];
-    }
-
     currencyFromInput.addEventListener("input", function () {
       const fromValue = parseFloat(currencyFromInput.value);
       const fromCurrency = fromSelect?.value || "USD";
@@ -118,7 +146,7 @@ function setupCurrencyInputListeners() {
           fromCurrency,
           toCurrency
         );
-        currencyToInput.value = convertedValue.toFixed(2);
+        currencyToInput.value = formatCurrency(convertedValue);
       } else {
         currencyToInput.value = "";
       }
@@ -134,7 +162,7 @@ function setupCurrencyInputListeners() {
           toCurrency,
           fromCurrency
         );
-        currencyFromInput.value = convertedValue.toFixed(2);
+        currencyFromInput.value = formatCurrency(convertedValue);
       } else {
         currencyFromInput.value = "";
       }
@@ -144,59 +172,6 @@ function setupCurrencyInputListeners() {
       select?.addEventListener("change", () => {
         const event = new Event("input");
         currencyFromInput.dispatchEvent(event);
-      });
-    });
-  }
-}
-
-function initializeCurrencyConverter() {
-  const currencyFromInput = document.querySelector<HTMLInputElement>(
-    "#currency-from input"
-  );
-  const currencyToInput =
-    document.querySelector<HTMLInputElement>("#currency-to input");
-
-  if (currencyFromInput && currencyToInput) {
-    let activeInput: HTMLInputElement = currencyFromInput;
-
-    currencyFromInput.removeAttribute("readonly");
-    currencyToInput.setAttribute("readonly", "true");
-
-    currencyFromInput.addEventListener("focus", function () {
-      activeInput = currencyFromInput;
-      currencyFromInput.removeAttribute("readonly");
-      currencyToInput.setAttribute("readonly", "true");
-    });
-
-    currencyToInput.addEventListener("focus", function () {
-      activeInput = currencyToInput;
-      currencyToInput.removeAttribute("readonly");
-      currencyFromInput.setAttribute("readonly", "true");
-    });
-
-    document.querySelectorAll("#keypad button").forEach((button) => {
-      button.addEventListener("click", function () {
-        if (activeInput.hasAttribute("readonly")) return;
-
-        const value = (button as HTMLElement).innerHTML;
-        if (value.charCodeAt(0) === 9003) {
-          activeInput.value = activeInput.value.slice(0, -1);
-          if (activeInput.value.length === 0) {
-            currencyFromInput.value = "";
-            currencyToInput.value = "";
-          }
-        } else {
-          activeInput.value += value;
-        }
-
-        const fromValue = parseFloat(currencyFromInput.value);
-        const toValue = parseFloat(currencyToInput.value);
-
-        if (activeInput === currencyFromInput && !isNaN(fromValue)) {
-          currencyToInput.value = (fromValue * 3.5).toFixed(2);
-        } else if (activeInput === currencyToInput && !isNaN(toValue)) {
-          currencyFromInput.value = (toValue / 3.5).toFixed(2);
-        }
       });
     });
   }
@@ -219,10 +194,12 @@ async function fetchExchangeRates() {
 }
 
 // registerServiceWorker();
+
 createConverter();
 createKeypad();
-document.addEventListener("DOMContentLoaded", setupCurrencyInputListeners);
-document.addEventListener("DOMContentLoaded", initializeCurrencyConverter);
+
+document.addEventListener("DOMContentLoaded", setupKeypad);
+
 fetchExchangeRates().then((rates) => {
   if (rates) {
     console.log("Exchange rates fetched successfully:", rates);
