@@ -1,3 +1,14 @@
+function registerServiceWorker() {
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker
+      .register("/service-worker.js")
+      .then((registration) =>
+        console.log("Service Worker Registered", registration)
+      )
+      .catch((error) => console.log("Service Worker Error", error));
+  }
+}
+
 function createKeypad() {
   const keypadContainer = document.createElement("div");
   keypadContainer.className = "row row-cols-3 g-2";
@@ -106,6 +117,7 @@ function initializeCurrencyConverter() {
   });
 }
 
-// createKeypad();
+// registerServiceWorker();
+createKeypad();
 document.addEventListener("DOMContentLoaded", setupCurrencyInputListeners);
 document.addEventListener("DOMContentLoaded", initializeCurrencyConverter);
