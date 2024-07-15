@@ -1,6 +1,5 @@
 :root {
-  -ms-touch-action: pan-x pan-y;
-      touch-action: pan-x pan-y;
+  touch-action: pan-x pan-y;
   height: 100%;
 }
 
@@ -11,7 +10,6 @@ body {
 #currency-to select, #currency-from select {
   font-size: 1.2rem;
 }
-
 #currency-to .input-group span,
 #currency-to .input-group input, #currency-from .input-group span,
 #currency-from .input-group input {
@@ -21,4 +19,5 @@ body {
 #keypad > div > .col > button {
   font-size: 1.25rem;
 }
+
 /*# sourceMappingURL=style.css.map */
