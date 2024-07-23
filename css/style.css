@@ -7,8 +7,15 @@ body {
   height: 100svh;
 }
 
+#currency-to:focus-within, #currency-from:focus-within {
+  outline: 1px solid black;
+}
 #currency-to select, #currency-from select {
   font-size: 1.2rem;
+}
+#currency-to input:focus, #currency-from input:focus {
+  outline: none;
+  box-shadow: none;
 }
 #currency-to .input-group span,
 #currency-to .input-group input, #currency-from .input-group span,

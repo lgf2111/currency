@@ -1,0 +1,39 @@
+:root {
+  touch-action: pan-x pan-y;
+  height: 100%;
+}
+
+body {
+  height: 100svh;
+}
+
+#currency- {
+  &to,
+  &from {
+    &:focus-within {
+      outline: 1px solid black;
+    }
+
+    select {
+      font-size: 1.2rem;
+    }
+
+    input {
+      &:focus {
+        outline: none;
+        box-shadow: none;
+      }
+    }
+
+    .input-group {
+      span,
+      input {
+        font-size: 2rem;
+      }
+    }
+  }
+}
+
+#keypad > div > .col > button {
+  font-size: 1.25rem;
+}

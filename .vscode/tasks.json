@@ -14,7 +14,7 @@
       "label": "TypeScript Watch",
       "type": "shell",
       "command": "tsc",
-      "args": ["--watch"],
+      "args": ["--watch", "--outDir", "js/"],
       "problemMatcher": ["$tsc-watch"],
       "isBackground": true
     },
@@ -22,7 +22,7 @@
       "label": "SASS Watch",
       "type": "shell",
       "command": "sass",
-      "args": ["--watch", "./css:./css"],
+      "args": ["--watch", "./scss:./css"],
       "problemMatcher": [],
       "isBackground": true
     },

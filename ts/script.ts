@@ -135,6 +135,7 @@ function setupKeypad() {
   const currencyFromInput = document.querySelector<HTMLInputElement>(
     "#currency-from input"
   );
+
   const currencyToInput =
     document.querySelector<HTMLInputElement>("#currency-to input");
 
@@ -241,43 +242,7 @@ getExchangeRates().then((data) => {
   console.log("Exchange rates fetched successfully:", data);
 });
 
-// Call the function and console log the exchange rates
-// fetchExchangeRateApi().then((data) => {
-//   console.log("data:", data);
-// });
-
-// function storeExchangeRatesWithTimestamp(
-//   rates: ExchangeRates["conversion_rates"]
-// ) {
-//   if (rates) {
-//     const timestamp = new Date().getTime();
-//     const dataToStore = {
-//       rates: rates,
-//       timestamp: timestamp,
-//     };
-//     localStorage.setItem("exchangeRatesData", JSON.stringify(dataToStore));
-//     console.log(
-//       "Exchange rates stored in local storage with timestamp:",
-//       timestamp
-//     );
-//   } else {
-//     console.log("No rates provided to store");
-//   }
-// }
-
-// registerServiceWorker();
-
 createConverter();
 createKeypad();
 
 document.addEventListener("DOMContentLoaded", setupKeypad);
-
-// fetchExchangeRates().then((rates) => {
-//   if (rates) {
-//     console.log("Exchange rates fetched successfully:", rates);
-//     localStorage.setItem("exchangeRates", JSON.stringify(rates));
-//     console.log("Exchange rates stored in local storage");
-//   } else {
-//     console.log("Failed to fetch exchange rates");
-//   }
-// });
